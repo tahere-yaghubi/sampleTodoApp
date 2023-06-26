@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day1-TodoApp</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="box-border lg:content-auto bg-bgPrimary relative">
+      <!--Dialog-->
+      <dialog
+        id="todoDialog"
+        class="w-[500px] h-[300px] absolute top-[30%] left-[35%] justify-between text-center items-center"
+      >
+        <form method="dialog" class="flex-column p-4">
+          <div class="flex flex-row justify-between">
+            <h3 class="m-1">To Do</h3>
+            <button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 text-[#000]"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <textarea
+            id="input"
+            type="text"
+            value="tbone"
+            class="mt-5 block w-full h-24 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+          ></textarea>
+          <div>
+            <button
+              id="addItem"
+              class="rounded bg-[#1d4ed8] text-[#fff] w-24 p-2 mt-10"
+            >
+              Add Card
+            </button>
+          </div>
+        </form>
+      </dialog>
+      <!--Dialog-->
+      <!--  start Navbar -->
+      <div
+        class="navbar h-[60px] border-b border-[hsla(0,0%,100%,0.16)] p-3 flex flex-row items-stretch justify-between"
+      >
+        <div class="flex flex-row items-stretch justify-around">
+          <div class="stroke-2 cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="w-8 h-8 p-1 text-[#fff] hover:bg-secondary"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 6a3 3 0 013-3h2.25a3 3 0 013 3v2.25a3 3 0 01-3 3H6a3 3 0 01-3-3V6zm9.75 0a3 3 0 013-3H18a3 3 0 013 3v2.25a3 3 0 01-3 3h-2.25a3 3 0 01-3-3V6zM3 15.75a3 3 0 013-3h2.25a3 3 0 013 3V18a3 3 0 01-3 3H6a3 3 0 01-3-3v-2.25zm9.75 0a3 3 0 013-3H18a3 3 0 013 3V18a3 3 0 01-3 3h-2.25a3 3 0 01-3-3v-2.25z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </div>
+
+          <!-- <div class="stroke-2 cursor-pointer flex items-center ml-3">
+            <span class="text-[#fff]">more</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="w-6 h-6 p-1 text-[#fff]"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </div> -->
+
+          <button class="stroke-2 cursor-pointer ml-3" id="showDialog">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="w-8 h-8 bg-secondary p-1 text-[#fff]"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div class="object-cover w-16 h-8 flex items-center">
+          <img src="./logo.gif" alt="" class="w-100 h-100" />
+        </div>
+      </div>
+
+      <!-- End Navbar -->
+
+      <!-- start SideBar -->
+      <!-- <div
+        class="sidebar h-screen w-36 border-r border-[hsla(0,0%,100%,0.16)] p-3 flex flex-row"
+      ></div> -->
+
+      <!-- End SideBar -->
+      <!-- <div class="todo-list">
+        <input id="input" type="text" />
+        <button id="addItem">add item</button>
+      </div> -->
+      <div class="container">
+        <ul id="list" class="list">
+          <span class="text-black block text-center">ToDo</span>
+        </ul>
+        <ul id="doing-list" class="list">
+          <span class="text-black block text-center">Doing</span>
+        </ul>
+        <ul id="doing-list" class="list">
+          <span class="text-black block text-center">Done</span>
+        </ul>
+      </div>
+    </main>
+
+    <script src="./index.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+              bgPrimary: "#4d7c0f",
+              secondary: "hsla(0,0%,100%,0.16)",
+            },
+          },
+        },
+      };
+    </script>
+  </body>
+</html>
