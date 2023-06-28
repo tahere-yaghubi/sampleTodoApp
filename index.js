@@ -16,6 +16,8 @@ function addElement() {
   //create element
   const li = document.createElement("li");
   li.className = "item";
+  li.draggable = "true";
+  li.ondragstart = "drag(event)";
   //input value
   var inputValue = document.getElementById("input");
   //add input value to li
@@ -40,4 +42,57 @@ function addElement() {
       div.style.display = "none";
     };
   }
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+
+///////
+
+const lists = document.querySelectorAll(".list");
+
+lists.forEach((l) => {
+  l.addEventListener("dragenter", dragEnter);
+  l.addEventListener("dragover", dragOver);
+  l.addEventListener("dragleave", dragLeave);
+  l.addEventListener("drop", drop);
+});
+
+function dragEnter(e) {
+  e.preventDefault();
+  e.target.classList.add("drag-over");
+}
+
+function dragOver(e) {
+  e.preventDefault();
+  e.target.classList.add("drag-over");
+}
+
+function dragLeave(e) {
+  e.target.classList.remove("drag-over");
+}
+
+function drop(e) {
+  e.target.classList.remove("drag-over");
+
+  // get the draggable element
+  const id = e.dataTransfer.getData("text/plain");
+  const draggable = document.getElementById(id);
+
+  // add it to the drop target
+  e.target.appendChild(draggable);
+
+  // display the draggable element
+  draggable.classList.remove("hide");
 }
