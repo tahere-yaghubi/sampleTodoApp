@@ -1,7 +1,6 @@
 //|Dialog :
 const showButton = document.getElementById("showDialog");
 const TodoDialog = document.getElementById("todoDialog");
-
 showButton.addEventListener("click", () => {
   TodoDialog.showModal();
 });
@@ -11,20 +10,41 @@ var close = document.getElementsByClassName("close");
 adBtn.addEventListener("click", () => {
   addElement();
 });
+dragAndDrop();
+//drag and drop
+function dragAndDrop() {
+  var items = document.getElementsByClassName("item");
+  var lists = document.getElementsByClassName("list");
+  var todolist = document.getElementById("todolist");
+  var doinglist = document.getElementById("doinglist");
+  var donelist = document.getElementById("donelist");
+  var dragItem = null;
+  for (el of items) {
+    el.addEventListener("dragstart", dragStartFunc);
+    el.addEventListener("dragend", dragEndFunc);
+  }
+  for (el of lists) {
+    el.addEventListener("dragover", dragOverFunc);
+    el.addEventListener("dragenter", dragEnterFunc);
+    el.addEventListener("dragLeave", dragLeaveFunc);
+    el.addEventListener("drop", dropFunc);
+  }
+}
 
 function addElement() {
   //create element
   const li = document.createElement("li");
   li.className = "item";
   li.draggable = "true";
-  li.ondragstart = "drag(event)";
+  document.getElementById("todolist").appendChild(li);
+  dragAndDrop();
   //input value
   var inputValue = document.getElementById("input");
   //add input value to li
   var liText = document.createTextNode(inputValue.value);
   li.appendChild(liText);
   // add li to list
-  document.getElementById("list").appendChild(li);
+
   //empty input value
   inputValue.value = " ";
   //add close btn
@@ -38,61 +58,30 @@ function addElement() {
   for (let i = 0; i < close.length; i++) {
     close[i].onclick = () => {
       var div = close[i].parentElement;
-      console.log(div, close[i]);
       div.style.display = "none";
     };
   }
 }
 
-function allowDrop(ev) {
-  ev.preventDefault();
+function dragStartFunc() {
+  dragItem = this;
+  setTimeout(() => (this.className = "invisible"), 0);
+}
+function dragEndFunc() {
+  this.className = "item";
+  dragItem = null;
 }
 
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-}
-
-///////
-
-const lists = document.querySelectorAll(".list");
-
-lists.forEach((l) => {
-  l.addEventListener("dragenter", dragEnter);
-  l.addEventListener("dragover", dragOver);
-  l.addEventListener("dragleave", dragLeave);
-  l.addEventListener("drop", drop);
-});
-
-function dragEnter(e) {
+function dragOverFunc(e) {
   e.preventDefault();
-  e.target.classList.add("drag-over");
+  console.log("drag over");
 }
-
-function dragOver(e) {
-  e.preventDefault();
-  e.target.classList.add("drag-over");
+function dragEnterFunc() {
+  console.log("drag entered");
 }
-
-function dragLeave(e) {
-  e.target.classList.remove("drag-over");
+function dragLeaveFunc() {
+  console.log("drag left");
 }
-
-function drop(e) {
-  e.target.classList.remove("drag-over");
-
-  // get the draggable element
-  const id = e.dataTransfer.getData("text/plain");
-  const draggable = document.getElementById(id);
-
-  // add it to the drop target
-  e.target.appendChild(draggable);
-
-  // display the draggable element
-  draggable.classList.remove("hide");
+function dropFunc() {
+  this.append(dragItem);
 }

@@ -127,30 +127,18 @@
         <button id="addItem">add item</button>
       </div> -->
       <div class="container">
-        <ul
-          id="list"
-          class="list"
-          ondrop="drop(event)"
-          ondragover="allowDrop(event)"
-        >
-          <span class="text-black block text-center">ToDo</span>
-        </ul>
-        <ul
-          id="doing-list"
-          class="list"
-          ondrop="drop(event)"
-          ondragover="allowDrop(event)"
-        >
-          <span class="text-black block text-center">Doing</span>
-        </ul>
-        <ul
-          id="doing-list"
-          class="list"
-          ondrop="drop(event)"
-          ondragover="allowDrop(event)"
-        >
-          <span class="text-black block text-center">Done</span>
-        </ul>
+        <div class="list-container">
+          <span class="text-black text-center">ToDo</span>
+          <ul id="todolist" class="list"></ul>
+        </div>
+        <div class="list-container">
+          <span class="text-black text-center">Doing</span>
+          <ul id="doinglist" class="list"></ul>
+        </div>
+        <div class="list-container">
+          <span class="text-black text-center">Done</span>
+          <ul id="donelist" class="list"></ul>
+        </div>
       </div>
     </main>
 
