@@ -16,6 +16,30 @@
   </head>
   <body>
     <main class="box-border lg:content-auto bg-bgPrimary relative">
+      <!--bg-color pallet-->
+      <dialog
+        id="bg-colorDialog"
+        class="w-[400px] h-[300px] absolute top-20 left-[60%] justify-between text-center items-center"
+      >
+        <form method="dialog" class="flex-column p-4">
+          <button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="w-6 h-6 text-[#000]"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </form>
+      </dialog>
+      <!--bg-color pallet-->
+
       <!--Dialog-->
       <dialog
         id="todoDialog"
@@ -77,22 +101,6 @@
             </svg>
           </div>
 
-          <!-- <div class="stroke-2 cursor-pointer flex items-center ml-3">
-            <span class="text-[#fff]">more</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="w-6 h-6 p-1 text-[#fff]"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </div> -->
-
           <button class="stroke-2 cursor-pointer ml-3" id="showDialog">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -109,8 +117,26 @@
           </button>
         </div>
 
-        <div class="object-cover w-16 h-8 flex items-center">
-          <img src="./logo.gif" alt="" class="w-100 h-100" />
+        <div class="object-cover w-100 h-8 flex items-center">
+          <button id="show-bg-dialog">
+            <div
+              class="stroke-2 cursor-pointer flex items-center ml-3 text-[#fff]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 p-1 text-[#fff]"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              change background
+            </div>
+          </button>
         </div>
       </div>
 

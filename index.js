@@ -1,8 +1,14 @@
 //|Dialog :
 const showButton = document.getElementById("showDialog");
+const showBgDialog = document.getElementById("show-bg-dialog");
 const TodoDialog = document.getElementById("todoDialog");
+const bgColorDialog = document.getElementById("bg-colorDialog");
 showButton.addEventListener("click", () => {
   TodoDialog.showModal();
+});
+
+showBgDialog.addEventListener("click", () => {
+  bgColorDialog.showModal();
 });
 
 const adBtn = document.getElementById("addItem");
